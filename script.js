@@ -10,12 +10,12 @@ addBtn.addEventListener("click", function () {
 const saveNotes = () => {
 
     // Select content textareas
-    const notes = 
-        document.querySelectorAll(".note .content"); 
-        
+    const notes =
+        document.querySelectorAll(".note .content");
+
     // Select title textareas
-    const titles = 
-        document.querySelectorAll(".note .title"); 
+    const titles =
+        document.querySelectorAll(".note .title");
 
     const data = [];
 
@@ -28,13 +28,13 @@ const saveNotes = () => {
         }
     });
 
-    const titlesData = 
+    const titlesData =
         data.map((item) => item.title);
     console.log(titlesData);
     localStorage.setItem(
         "titles", JSON.stringify(titlesData));
 
-    const contentData = 
+    const contentData =
         data.map((item) => item.content);
     localStorage.setItem(
         "notes", JSON.stringify(contentData));
@@ -63,10 +63,13 @@ const addNote = (text = "", title = "") => {
     </textarea>
     `;
     function handleTrashClick() {
-        note.remove();
+        if (confirm("Do you want to Delete it?")) {
+            note.remove();
+        } 
         saveNotes();
     }
     function handleSaveClick() {
+        alert("Notes Saved sucessfully");
         saveNotes();
     }
     const delBtn = note.querySelector(".trash");
@@ -83,14 +86,14 @@ const addNote = (text = "", title = "") => {
 // the localstorage
 function loadNotes() {
 
-    const titlesData = 
+    const titlesData =
         JSON.parse(localStorage.getItem("titles")) || [];
-    const contentData = 
+    const contentData =
         JSON.parse(localStorage.getItem("notes")) || [];
-        
-    for (let i = 0; 
-            i < Math.max(
-                titlesData.length, contentData.length); i++) {
+
+    for (let i = 0;
+        i < Math.max(
+            titlesData.length, contentData.length); i++) {
         addNote(contentData[i], titlesData[i]);
     }
 }
