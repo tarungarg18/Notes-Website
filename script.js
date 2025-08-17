@@ -1,19 +1,15 @@
 const addBtn = document.querySelector("#addBtn");
 const main = document.querySelector("#main");
 
-// Click event listener
 addBtn.addEventListener("click", function () {
     addNote();
 });
 
-// Save button function
 const saveNotes = () => {
 
-    // Select content textareas
     const notes =
         document.querySelectorAll(".note .content");
 
-    // Select title textareas
     const titles =
         document.querySelectorAll(".note .title");
 
@@ -40,7 +36,6 @@ const saveNotes = () => {
         "notes", JSON.stringify(contentData));
 };
 
-// Addnote button function
 const addNote = (text = "", title = "") => {
     const note = document.createElement("div");
     note.classList.add("note");
@@ -82,8 +77,7 @@ const addNote = (text = "", title = "") => {
     saveNotes();
 };
 
-// Loading all the notes those are saved in 
-// the localstorage
+
 function loadNotes() {
 
     const titlesData =
